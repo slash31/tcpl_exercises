@@ -1,0 +1,9 @@
+Q: How would you test the word count program?
+
+A: By entering various inputs that contain many different valid types of word constructions; single characters, multi-character words, alpha-numerics, words with special characters, etc..
+
+
+Q: What kinds of input are most likely to uncover bugs if there are any?
+
+A: Input that feels around at the borders of what's valid input; e.g. embedded escape codes, inputs that overrun the max size of an int, etc..
+
