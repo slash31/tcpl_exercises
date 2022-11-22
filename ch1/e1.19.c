@@ -1,20 +1,20 @@
 #include <stdio.h>
 
 #define MAXLINE 1000 // max input line size
-#define THOLD 80 // print lines longer than the threshold value
 
 int rgetline(char line[], int maxline);
 void printLine(char line[], int len);
+void revLine(char line[], char rline[]);
 
 int main() {
 
 	int len, displayed;
 	char line[MAXLINE];
+	char rline[MAXLINE];
 
 	while ((len = rgetline(line, MAXLINE)) > 0) {
-		if (len > THOLD) {
-			printLine(line,len);
-		}
+		revLine(line, rline);
+		printLine(rline,len);
 	}
 	return 0;
 }
@@ -27,7 +27,7 @@ void printLine(char line[], int len) {
 	} else {
 		displayed = len;
 	}
-	printf("\n\nThe following line is >= %d chars (%d displayed):\n\n",THOLD,displayed);
+	printf("\n\nThe following line is %d chars (%d displayed):\n\n", len, displayed);
 	printf("%s\n", line);
 }
 
@@ -46,3 +46,12 @@ int rgetline(char s[], int lim) {
 	return i;
 }
 
+void revLine(char line[], char rline[]) {
+
+	int i, npos;
+	char c;
+
+	for(npos = 0; line[npos] != '\0'; npos++);
+	for(i = 0; (rline[i] = line[--npos]) && npos >= 0; i++); 
+	rline[i] = '\0';
+}	
